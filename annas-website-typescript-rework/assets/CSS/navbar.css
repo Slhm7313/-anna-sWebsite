@@ -1,31 +1,340 @@
 #main_container-navbar {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    gap: 0.5rem;
+    display: flex;
+    justify-content: space-around;
     align-items: center;
-    max-width: 62.5rem;
-    margin: 1.5rem auto;
-    width: 100%;
-    padding: 0 1rem;
+    max-width: 55rem;
+    margin: 2rem auto;
+    width: 90%;
+    padding: 0.75rem 1.5rem;
+
+    /* Premium Glassmorphism Look */
+    background: var(--trasnparen_background);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 244, 225, 0.1);
+    border-radius: 50px; /* Pill shape */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+    /* Sticky positioning so it floats while scrolling */
+    position: sticky;
+    top: 1.5rem;
+    z-index: 1000;
 }
 
 .navbar-items {
-    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-links {
-    display: block;
+    position: relative;
+    display: inline-block;
     text-decoration: none;
     color: var(--LightGreen);
-    padding: 0.5rem 0;
-    font-size: 1.3rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 0.5rem 1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Subtle Underline Glow Indicator */
+.navbar-links::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background: var(--White);
+    box-shadow: 0 0 8px var(--Blue-Grren);
+    transition: width 0.3s ease, left 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Hover States */
 .navbar-links:hover {
     color: var(--White);
-    font-weight: bold;
-    transform: translateY(-0.25rem) scale(1.05);
-    text-shadow: 0 0.625rem 2.1875rem var(--White);
+    transform: translateY(-2px);
+}
+
+.navbar-links:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+/* ==========================================
+   Smooth Scroll Animations
+   ========================================== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================
+   Navbar Review Button
+   ========================================== */
+.navbar-review-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--Blue-Grren), var(--MidGreen));
+    color: var(--Black);
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(137, 215, 183, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.navbar-review-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(137, 215, 183, 0.5);
+}
+
+/* ==========================================
+   Review Modal & Glassmorphism Overlay
+   ========================================== */
+.review-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 18, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.review-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.review-modal-card {
+    background: rgba(255, 244, 225, 0.05);
+    border: 1px solid rgba(255, 244, 225, 0.15);
+    border-radius: 1.5rem;
+    width: 100%;
+    max-width: 36rem;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: var(--White);
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.review-modal-overlay.active .review-modal-card {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--LightGreen);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: var(--White);
+}
+
+.review-header h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+    color: var(--White);
+}
+
+.review-header p {
+    color: var(--LightGreen);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.85;
+}
+
+/* ==========================================
+   Form Controls & Interactive Elements
+   ========================================== */
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--LightGreen);
+    font-weight: 600;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Glass Inputs */
+.glass-input {
+    background: rgba(255, 244, 225, 0.06);
+    border: 1px solid rgba(255, 244, 225, 0.15);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--White);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-input:focus {
+    border-color: var(--Blue-Grren);
+    box-shadow: 0 0 10px rgba(137, 215, 183, 0.3);
+}
+
+.glass-input option {
+    background: var(--Black);
+    color: var(--White);
+}
+
+/* Star Rating Selector (Reverse order trick for CSS hover) */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    font-size: 2rem;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: rgba(255, 244, 225, 0.2);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Interactive Chips (Questionnaire) */
+.chips-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.chip-item input {
+    display: none;
+}
+
+.chip-item span {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    background: rgba(255, 244, 225, 0.05);
+    border: 1px solid rgba(255, 244, 225, 0.15);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    color: var(--LightGreen);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.chip-item input:checked + span {
+    background: var(--Blue-Grren);
+    color: var(--Black);
+    border-color: var(--Blue-Grren);
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(137, 215, 183, 0.4);
+}
+
+/* Submit Button */
+.submit-review-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, var(--Blue-Grren), var(--DarkBlue-Green));
+    color: var(--White);
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.submit-review-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(66, 132, 117, 0.4);
+}
+
+.review-success-hidden {
+    display: none;
+}
+
+#review-success-msg {
+    padding: 1.5rem;
+    background: rgba(137, 215, 183, 0.15);
+    border: 1px solid var(--Blue-Grren);
+    border-radius: 0.75rem;
+    color: var(--White);
+    text-align: center;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    #main_container-navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.35rem;
+        border-radius: 1.5rem;
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #main_container-navbar {
+        width: calc(100% - 2rem);
+    }
+
+    .navbar-links {
+        padding: 0.5rem 0.65rem;
+        font-size: 0.95rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-modal-card {
+        padding: 1.5rem;
+    }
 }

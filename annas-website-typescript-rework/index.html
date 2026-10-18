@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta charset="UTF-8">
@@ -14,119 +14,214 @@
     <link href="assets/CSS/footer.css" rel="stylesheet">
 </head>
 <body>
-<div id="main_container-navbar">
+<nav id="main_container-navbar">
+    <div class="navbar-items"><a class="navbar-links" href="index.html">Αρχική</a></div>
+    <div class="navbar-items"><a class="navbar-links" href="assets/pages/mathimata.html">Μαθήματα</a></div>
+    <div class="navbar-items"><a class="navbar-links" href="assets/pages/ores.html">Ωράριο</a></div>
+    <div class="navbar-items"><a class="navbar-links" href="assets/pages/evroskalijis.html">Περιοχές</a></div>
+    <div class="navbar-items"><a class="navbar-links" href="assets/pages/contact.html">Επικοινωνία</a></div>
+    <!-- Νέο Premium Button για Review -->
     <div class="navbar-items">
-        <a class="navbar-links" href="index.html">Αρχική</a>
+        <button class="navbar-review-btn" id="open-review-btn">
+            ★ Αξιολόγηση
+        </button>
     </div>
-    <div class="navbar-items">
-        <a class="navbar-links" href="assets/pages/mathimata.html">Μαθήματα</a>
-    </div>
-    <div class="navbar-items">
-        <a class="navbar-links" href="assets/pages/ores.html">Ωράριο</a>
-    </div>
-    <div class="navbar-items">
-        <a class="navbar-links" href="assets/pages/evroskalijis.html">Περιοχές</a>
-    </div>
-    <div class="navbar-items">
-        <a class="navbar-links" href="assets/pages/contact.html">Επικοινωνία</a>
+</nav>
+
+<!-- Review Modal (Εμφανίζεται όταν πατηθεί το κουμπί) -->
+<div aria-hidden="true" class="review-modal-overlay" id="review-modal">
+    <div class="review-modal-card">
+        <button aria-label="Κλείσιμο" class="modal-close-btn" id="close-review-btn">&times;</button>
+
+        <div class="review-header">
+            <h2>Η Γνώμη σας για τη «Γνώση»</h2>
+            <p>Βοηθήστε μας να γίνουμε ακόμα καλύτεροι ή μοιραστείτε την εμπειρία σας!</p>
+        </div>
+
+        <form id="review-form">
+            <!-- Step 1: Star Rating -->
+            <div class="form-group">
+                <label>Βαθμολογήστε την εμπειρία σας:</label>
+                <div class="star-rating">
+                    <input id="star5" name="rating" required type="radio" value="5"/><label for="star5"
+                                                                                            title="5 αστέρια">★</label>
+                    <input id="star4" name="rating" type="radio" value="4"/><label for="star4"
+                                                                                   title="4 αστέρια">★</label>
+                    <input id="star3" name="rating" type="radio" value="3"/><label for="star3"
+                                                                                   title="3 αστέρια">★</label>
+                    <input id="star2" name="rating" type="radio" value="2"/><label for="star2"
+                                                                                   title="2 αστέρια">★</label>
+                    <input id="star1" name="rating" type="radio" value="1"/><label for="star1"
+                                                                                   title="1 αστέριο">★</label>
+                </div>
+            </div>
+
+            <!-- Step 2: Duration / Identity -->
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="review-role">Είστε:</label>
+                    <select class="glass-input" id="review-role" required>
+                        <option disabled selected value="">Επιλέξτε ιδιότητα</option>
+                        <option value="student">Μαθητής / Μαθήτρια</option>
+                        <option value="parent">Γονέας / Κηδεμόνας</option>
+                        <option value="alumni">Απόφοιτος</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="review-duration">Πόσο καιρό είστε μαζί μας;</label>
+                    <select class="glass-input" id="review-duration" required>
+                        <option disabled selected value="">Επιλέξτε διάρκεια</option>
+                        <option value="0-6m">Λιγότερο από 6 μήνες</option>
+                        <option value="1y">1 Χρόνο</option>
+                        <option value="2y">2 Χρόνια</option>
+                        <option value="3y+">3+ Χρόνια</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 3: Mini Questionnaire -->
+            <div class="form-group">
+                <label>Τι ξεχωρίζετε περισσότερο στη «Γνώση»;</label>
+                <div class="chips-group">
+                    <label class="chip-item">
+                        <input name="highlights" type="checkbox" value="teaching">
+                        <span>Μεταδοτικότητα</span>
+                    </label>
+                    <label class="chip-item">
+                        <input name="highlights" type="checkbox" value="atmosphere">
+                        <span>Φιλικό Κλίμα / Chill Vibes</span>
+                    </label>
+                    <label class="chip-item">
+                        <input name="highlights" type="checkbox" value="patience">
+                        <span>Υπομονή & Επιμονή</span>
+                    </label>
+                    <label class="chip-item">
+                        <input name="highlights" type="checkbox" value="organization">
+                        <span>Οργάνωση & Μέθοδος</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 4: Text Review & Name -->
+            <div class="form-group">
+                <label for="review-name">Ονοματεπώνυμο (ή Αρχικά):</label>
+                <input class="glass-input" id="review-name" placeholder="π.χ. Μαρία Κ." required type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="review-comment">Το σχόλιό σας:</label>
+                <textarea class="glass-input" id="review-comment" placeholder="Γράψτε εδώ την εμπειρία σας..." required
+                          rows="4"></textarea>
+            </div>
+
+            <button class="submit-review-btn" type="submit">Υποβολή Αξιολόγησης</button>
+        </form>
+
+        <div class="review-success-hidden" id="review-success-msg">
+            ✔ Ευχαριστούμε πολύ! Η αξιολόγησή σας καταχωρήθηκε επιτυχώς.
+        </div>
     </div>
 </div>
 <!--TODO 2-->
-<div id="main_container-Header">
+<header id="main_container-Header">
     <div id="header-name-front">
-        <h1>Γνώση</h1>
+        <h1 class="brand-title">Γνώση</h1>
+        <div class="brand-badge">Φροντιστήριο Μέσης Εκπαίδευσης</div>
     </div>
+
     <div id="header_howWeWork-text">
         <h2>Η Φιλοσοφία μας</h2>
         <p class="intro-text">
             Στο φροντιστήριό μας, η μάθηση δεν είναι μια στεγνή διαδικασία αποστήθισης, αλλά μια κοινή διαδρομή.
             Πιστεύουμε ότι για να αποδώσει ένας μαθητής, πρέπει πρώτα να νιώθει ασφάλεια, έμπνευση και στήριξη.
         </p>
-        <strong class="intro_text_secondary-strong">Πώς δουλεύουμε;</strong>
-        <p class="intro_text_secondary-p">
-            Μεταδοτικότητα & Ευφυΐα: Η βαθιά γνώση του αντικειμένου συνδυάζεται με
-            έξυπνες, απλές μεθόδους διδασκαλίας
-            που ξεκλειδώνουν τη σκέψη κάθε παιδιού. <br> <br>
 
-            Επιμονή & Υπομονή: Κάθε μαθητής έχει τον δικό του ρυθμό. Είμαστε εδώ για να εξηγήσουμε ξανά και ξανά, όσες
-            φορές κι αν χρειαστεί, με απόλυτη ηρεμία. <br> <br>
+        <h3 class="methodology-title">Πώς δουλεύουμε;</h3>
 
-            Χιούμορ & Chill Vibes: Το μάθημα γίνεται πιο παραγωγικό όταν υπάρχει χαμόγελο. Σπάμε το άγχος των εξετάσεων
-            με θετική ενέργεια και καλή διάθεση. <br> <br>
-        </p>
+        <ul class="methodology-list">
+            <li>
+                <strong>Μεταδοτικότητα & Ευφυΐα:</strong>
+                <span>Η βαθιά γνώση του αντικειμένου συνδυάζεται με έξυπνες, απλές μεθόδους διδασκαλίας που ξεκλειδώνουν τη σκέψη κάθε παιδιού.</span>
+            </li>
+            <li>
+                <strong>Επιμονή & Υπομονή:</strong>
+                <span>Κάθε μαθητής έχει τον δικό του ρυθμό. Είμαστε εδώ για να εξηγήσουμε ξανά και ξανά, όσες φορές κι αν χρειαστεί, με απόλυτη ηρεμία.</span>
+            </li>
+            <li>
+                <strong>Χιούμορ & Chill Vibes:</strong>
+                <span>Το μάθημα γίνεται πιο παραγωγικό όταν υπάρχει χαμόγελο. Σπάμε το άγχος των εξετάσεων με θετική ενέργεια και καλή διάθεση.</span>
+            </li>
+        </ul>
     </div>
+
     <div id="header-img">
-        <img alt="school_img" id="header_howWeWork-img" src="./assets/images/school_img1.jpeg">
+        <div class="img-wrapper">
+            <img alt="Φροντιστήριο Γνώση" id="header_howWeWork-img" src="./assets/images/school_img1.jpeg">
+        </div>
     </div>
+
     <div id="small_text">
-        <p class="small_text-p">Μάθημα χωρίς άγχος. Γνώση με μέθοδο.
-            Στο φροντιστήριο μας, η μεταδοτικότητα συναντά την υπομονή και το καθαρό μυαλό.
-            Είμαστε δίπλα σε κάθε μαθητή, έξυπνα, υποστηρικτικά, με χιούμορ και ουσία.
-            Γιατί η επιτυχία θέλει σωστό κλίμα. Μαθαίνουμε αλλιώς.
+        <p class="small_text-p">
+            «Μάθημα χωρίς άγχος. Γνώση με μέθοδο. Στο φροντιστήριό μας, η μεταδοτικότητα συναντά την υπομονή και το
+            καθαρό μυαλό. Είμαστε δίπλα σε κάθε μαθητή, έξυπνα, υποστηρικτικά, με χιούμορ και ουσία. Γιατί η επιτυχία
+            θέλει σωστό κλίμα. Μαθαίνουμε αλλιώς.»
         </p>
     </div>
-</div>
+</header>
 <!--todo 9-->
-<footer>
-    <div id="footer-main-cont">
-        <div class="main-style-footer-elements" id="footer-name">
-            <h1 id="footer-name-h1">Γνώση</h1>
+<footer id="footer-container">
+    <div id="footer-card">
+        <!-- Brand Title & Tagline -->
+        <div class="footer-brand">
+            <h2 class="footer-title">Γνώση</h2>
+            <p class="footer-slogan">Μαθαίνουμε αλλιώς — Γνώση χωρίς άγχος.</p>
         </div>
-        <div class="main-style-footer-elements" id="footer-slogan">
-            <h3 id="footer-slogan-h3">Μαθαίνουμε αλλιώς Γνώση χωρίς άγχος.</h3>
-        </div>
-        <div class="main-style-footer-elements" id="footer-social_media">
+
+        <!-- Interactive Social Links -->
+        <div class="footer-socials">
             <ul class="footer-social-media-ul">
                 <li class="footer-social-media-li" data-tooltip="gnwsi.2023">
                     <a aria-label="Instagram" class="footer-social-media-a"
-                       href="https://www.instagram.com/gnwsi.2023?igsh=bGYwMDJ4MHYwM2Ru">
-                        <svg class="bi bi-instagram footer-social-media-svg" fill="currentColor" height="16"
-                             viewBox="0 0 16 16"
-                             width="16" xmlns="http://www.w3.org/2000/svg">
+                       href="https://www.instagram.com/gnwsi.2023?igsh=bGYwMDJ4MHYwM2Ru" rel="noopener noreferrer"
+                       target="_blank">
+                        <svg class="footer-social-media-svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
                         </svg>
                     </a>
                 </li>
                 <li class="footer-social-media-li" data-tooltip="gnwsi.2023@gmail.com">
-                    <a aria-label="email"
-                       class="footer-social-media-a"
+                    <a aria-label="email" class="footer-social-media-a"
                        href="mailto:gnwsi.2023@gmail.com?subject=Ερώτηση για τις υπηρεσίες μας">
-                        <svg class="bi bi-envelope footer-social-media-svg" fill="currentColor" height="16"
-                             viewBox="0 0 16 16"
-                             width="16" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="footer-social-media-svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
                         </svg>
                     </a>
                 </li>
                 <li class="footer-social-media-li" data-tooltip="698360730">
                     <a aria-label="phone" class="footer-social-media-a" href="tel:+30698360730">
-                        <svg class="bi bi-telephone-fill footer-social-media-svg" fill="currentColor" height="16"
-                             viewBox="0 0 16 16"
-                             width="16" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="footer-social-media-svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
                                   fill-rule="evenodd"/>
                         </svg>
                     </a>
                 </li>
-
                 <li class="footer-social-media-li" data-tooltip="Κορησός">
-                    <a aria-label="location"
-                       class="footer-social-media-a"
-                       href="https://www.google.com/maps/place/40%C2%B030'13.9%22N+21%C2%B022'31.0%22E/@40.5038675,21.374356,18z/data=!3m1!4b1!4m12!1m7!3m6!1s0x1359fcfad39608a3:0x116da299715aecc!2zzpHOs86vzr_PhSDOk861z4nPgc6zzq_Ov8-FIDMsIE1hbmlha2kgNTIxIDAw!3b1!8m2!3d40.5025684!4d21.2487551!3m3!8m2!3d40.503866!4d21.37528?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D">
-                        <svg class="bi bi-geo-alt-fill footer-social-media-svg" fill="currentColor" height="16"
-                             viewBox="0 0 16 16"
-                             width="16" xmlns="http://www.w3.org/2000/svg">
+                    <a aria-label="location" class="footer-social-media-a"
+                       href="https://www.google.com/maps/place/40%C2%B030'13.9%22N+21%C2%B022'31.0%22E/@40.5038675,21.374356,18z/data=!3m1!4b1!4m12!1m7!3m6!1s0x1359fcfad39608a3:0x116da299715aecc!2zzpHOs86vzr_PhSDOk861z4nPgc6zzq_Ov8-FIDMsIE1hbmlha2kgNTIxIDAw!3b1!8m2!3d40.5025684!4d21.2487551!3m3!8m2!3d40.503866!4d21.37528?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D"
+                       rel="noopener noreferrer"
+                       target="_blank">
+                        <svg class="footer-social-media-svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
                         </svg>
                     </a>
                 </li>
-
             </ul>
         </div>
-        <div class="main-style-footer-elements" id="footer-copyright">
-            <p>
-                Copyrights ©Developer George Slimistinos ©Owner Anna Tsachtsira & Gnwsi
-            </p>
+
+        <!-- Copyright Line -->
+        <div class="footer-copyright">
+            <p>© Developer <strong>George Slimistinos</strong> | Owner <strong>Anna Tsachtsira & Gnwsi</strong></p>
         </div>
     </div>
 </footer>

@@ -1,82 +1,215 @@
 #main_container-Header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    align-items: start;
-    max-width: 62.5rem;
-    margin: 3rem auto;
-    padding: 0 1rem;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+    max-width: 72rem;
+    margin: 3.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Shared brand header for the inner pages */
+.page-banner {
+    max-width: 72rem;
+    margin: 2.5rem auto 1.5rem;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+/* Brand Title & Pill Badge */
+.brand-title {
+    font-size: 3.25rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin: 0;
+    background: linear-gradient(135deg, var(--White) 40%, var(--LightGreen) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
 }
 
 #header-name-front {
     grid-column: 1 / span 2;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-#header-name-front h1 {
-    font-size: 3.5rem;
-    color: var(--White);
-    margin: 0;
+#header-name-front .brand-title {
+    font-size: 4.5rem;
 }
 
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1.25rem;
+    background: var(--trasnparen_background);
+    border: 1px solid rgba(255, 244, 225, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50px;
+    color: var(--Blue-Grren);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Left Content Card */
 #header_howWeWork-text {
     grid-column: 1;
+    background: var(--trasnparen_background);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 244, 225, 0.08);
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     color: var(--LightGreen);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #header_howWeWork-text h2 {
     color: var(--White);
     font-size: 2rem;
     margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
 }
 
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.methodology-title {
+    color: var(--White);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Custom Glowing Bullet List */
+.methodology-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.methodology-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--LightGreen);
+}
+
+.methodology-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    background: var(--Blue-Grren);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--Blue-Grren);
+}
+
+.methodology-list strong {
+    color: var(--White);
+    display: inline-block;
+}
+
+/* Right Image Card */
 #header-img {
     grid-column: 2;
     display: flex;
     justify-content: center;
+    align-items: stretch;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 1.25rem;
+    padding: 12px;
+    background: var(--trasnparen_background);
+    border: 1px solid rgba(255, 244, 225, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #header_howWeWork-img {
     width: 100%;
-    max-width: 25rem;
-    height: auto;
-    border-radius: 0.75rem;
-    box-shadow: 0 0.6rem 1.8rem var(--DarkBlue-Green);
+    height: 100%;
+    max-height: 32rem;
+    border-radius: 0.85rem;
+    display: block;
+    object-fit: cover;
 }
 
+/* Modern Quote Banner Card */
 #small_text {
     grid-column: 1 / span 2;
-    background-color: var(--trasnparen_background);
-    border-left: 0.25rem solid var(--MidGreen);
-    padding: 1.5rem;
-    border-radius: 0.25rem;
-    margin-top: 2rem;
-    color: var(--Green);
+    background: var(--trasnparen_background);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 244, 225, 0.08);
+    border-left: 4px solid var(--Blue-Grren);
+    padding: 2rem 2.5rem;
+    border-radius: 1.25rem;
+    margin-top: 1rem;
+    color: var(--White-Grren);
     font-style: italic;
     text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #small_text:hover {
-    transform: translateY(-0.25rem) scale(1.1);
-    color: var(--White);
+    transform: translateY(-4px);
+    border-left-color: var(--White);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 #small_text p {
     margin: 0;
-    line-height: 1.6;
-    font-size: 1rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
 }
 
-.intro-text {
-    font-size: 1.3rem;
-}
+/* Responsive Layout */
+@media (max-width: 900px) {
+    #main_container-Header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
-.intro_text_secondary-strong {
-    font-size: 1.5rem;
-}
+    #header_howWeWork-text,
+    #header-img,
+    #small_text {
+        grid-column: 1;
+    }
 
-.intro_text_secondary-p {
-    font-size: 1.2rem;
+    #header-name-front .brand-title {
+        font-size: 3.2rem;
+    }
+
+    .page-banner .brand-title {
+        font-size: 2.75rem;
+    }
 }
