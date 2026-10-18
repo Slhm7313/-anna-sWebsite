@@ -1,0 +1,82 @@
+#main_container-Header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    max-width: 62.5rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+#header-name-front {
+    grid-column: 1 / span 2;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#header-name-front h1 {
+    font-size: 3.5rem;
+    color: var(--White);
+    margin: 0;
+}
+
+#header_howWeWork-text {
+    grid-column: 1;
+    color: var(--LightGreen);
+}
+
+#header_howWeWork-text h2 {
+    color: var(--White);
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+#header-img {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+}
+
+#header_howWeWork-img {
+    width: 100%;
+    max-width: 25rem;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.6rem 1.8rem var(--DarkBlue-Green);
+}
+
+#small_text {
+    grid-column: 1 / span 2;
+    background-color: var(--trasnparen_background);
+    border-left: 0.25rem solid var(--MidGreen);
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+    margin-top: 2rem;
+    color: var(--Green);
+    font-style: italic;
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+#small_text:hover {
+    transform: translateY(-0.25rem) scale(1.1);
+    color: var(--White);
+}
+
+#small_text p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.intro-text {
+    font-size: 1.3rem;
+}
+
+.intro_text_secondary-strong {
+    font-size: 1.5rem;
+}
+
+.intro_text_secondary-p {
+    font-size: 1.2rem;
+}

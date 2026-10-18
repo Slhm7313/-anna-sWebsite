@@ -1,0 +1,31 @@
+#main_container-navbar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    max-width: 62.5rem;
+    margin: 1.5rem auto;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.navbar-items {
+    text-align: center;
+}
+
+.navbar-links {
+    display: block;
+    text-decoration: none;
+    color: var(--LightGreen);
+    padding: 0.5rem 0;
+    font-size: 1.3rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-links:hover {
+    color: var(--White);
+    font-weight: bold;
+    transform: translateY(-0.25rem) scale(1.05);
+    text-shadow: 0 0.625rem 2.1875rem var(--White);
+}

@@ -1,0 +1,142 @@
+#footer-main-cont {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
+    align-items: start;
+    margin: 4rem auto 0 auto;
+    padding: 2rem 1rem 0;
+    max-width: 62.5rem;
+}
+
+.main-style-footer-elements {
+    text-align: center;
+}
+
+#footer-name {
+    grid-row: 1;
+}
+
+#footer-slogan {
+    grid-row: 2;
+}
+
+#footer-social_media {
+    grid-row: 3;
+}
+
+#footer-copyright {
+    grid-row: 4;
+}
+
+#footer-name-h1 {
+    color: var(--White);
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.09rem;
+}
+
+#footer-slogan-h3 {
+    color: var(--Green);
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.9;
+}
+
+#footer-copyright p {
+    color: var(--MidGreen);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+    opacity: 0.7;
+}
+
+.footer-social-media-ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.footer-social-media-li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-social-media-li::after {
+    position: absolute;
+    content: attr(data-tooltip);
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    padding: 0.4rem 0.8rem;
+    color: var(--Black);
+    background: var(--White);
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transition: bottom 0.3s cubic-bezier(0.47, 2, 0.41, 1.5), opacity 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15); /* ΔΙΟΡΘΩΘΗΚΕ: Από 12px σε 0.75rem */
+}
+
+.footer-social-media-li:has(a:hover, a:focus-visible)::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: 135%;
+}
+
+.footer-social-media-a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.8rem;
+    height: 3.8rem;
+    color: var(--LightGreen);
+    border: 0.125rem solid var(--DarkGreen); /* ΔΙΟΡΘΩΘΗΚΕ: Από 2px σε 0.125rem */
+    border-radius: 100%;
+    text-decoration: none;
+    outline: none;
+    overflow: hidden;
+    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-social-media-a::after {
+    position: absolute;
+    content: '';
+    inset: 100% 0 0 0;
+    background: var(--LightGreen);
+    z-index: 1;
+    transition: inset 0.3s ease-in-out;
+}
+
+.footer-social-media-svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.footer-social-media-a:hover,
+.footer-social-media-a:focus-visible {
+    color: var(--Black);
+    border-color: var(--LightGreen);
+    box-shadow: 0 0 0.9375rem rgba(230, 242, 221, 0.2); /* ΔΙΟΡΘΩΘΗΚΕ: Από 15px σε 0.9375rem */
+}
+
+.footer-social-media-a:hover::after,
+.footer-social-media-a:focus-visible::after {
+    inset: 0 0 0 0;
+}
+
+.footer-social-media-a:hover .footer-social-media-svg {
+    transform: scale(1.1);
+}
