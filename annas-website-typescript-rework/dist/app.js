@@ -1,18 +1,4 @@
 "use strict";
-function autoScalePage() {
-    const currentWidth = window.innerWidth;
-    const baseWidth = 1000;
-    const baseFontSize = 16;
-    if (currentWidth < baseWidth) {
-        const scaleRatio = currentWidth / baseWidth;
-        document.documentElement.style.fontSize = baseFontSize * scaleRatio + "px";
-    }
-    else {
-        document.documentElement.style.fontSize = baseFontSize + "px";
-    }
-}
-window.addEventListener("load", autoScalePage);
-window.addEventListener("resize", autoScalePage);
 function setupScrollAnimations() {
     const observerOptions = {
         root: null,
@@ -45,18 +31,24 @@ function setupReviewModal() {
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        closeBtn.focus();
     };
     openBtn.addEventListener('click', openModal);
     const closeModal = () => {
         modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        openBtn.focus();
     };
     closeBtn.addEventListener('click', closeModal);
     if (window.location.hash === '#review-modal')
         openModal();
     modal.addEventListener('click', (e) => {
         if (e.target === modal)
+            closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active'))
             closeModal();
     });
     form.addEventListener('submit', (e) => {

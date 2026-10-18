@@ -213,3 +213,70 @@
         font-size: 2.75rem;
     }
 }
+
+@media (max-width: 760px) {
+    #main_container-Header {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    #header_howWeWork-text {
+        padding: 1.75rem;
+    }
+
+    .img-wrapper {
+        min-height: 17rem;
+    }
+
+    #header_howWeWork-img {
+        max-height: 25rem;
+    }
+
+    #small_text {
+        padding: 1.5rem;
+    }
+
+    .page-banner {
+        margin: 1.5rem auto 1rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #header-name-front .brand-title {
+        font-size: clamp(2.6rem, 13vw, 3.2rem);
+    }
+
+    #header_howWeWork-text {
+        padding: 1.35rem;
+    }
+
+    #header_howWeWork-text h2 {
+        font-size: 1.65rem;
+    }
+
+    .intro-text {
+        font-size: 1rem;
+    }
+
+    .brand-badge {
+        max-width: 100%;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+    }
+
+    #small_text {
+        padding: 1.25rem;
+    }
+
+    #small_text p {
+        font-size: 1rem;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    #small_text:hover {
+        transform: none;
+    }
+}

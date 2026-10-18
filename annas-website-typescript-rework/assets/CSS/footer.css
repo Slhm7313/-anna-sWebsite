@@ -139,6 +139,11 @@
 
 /* Mobile Adjustments */
 @media (max-width: 600px) {
+    #footer-container {
+        margin: 2.5rem auto 1.5rem;
+        padding: 0 1rem;
+    }
+
     #footer-card {
         padding: 2rem 1.25rem 1.5rem;
         gap: 1.5rem;
@@ -149,12 +154,36 @@
     }
 
     .footer-social-media-a {
-        width: 3rem;
-        height: 3rem;
+        width: 3.25rem;
+        height: 3.25rem;
     }
 
     .footer-social-media-svg {
         width: 1.25rem;
         height: 1.25rem;
+    }
+
+    .footer-social-media-ul {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .footer-copyright {
+        padding-top: 1rem;
+    }
+
+    .footer-copyright p {
+        line-height: 1.7;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .footer-social-media-li::after {
+        display: none;
+    }
+
+    .footer-social-media-a:hover {
+        transform: none;
+        box-shadow: none;
     }
 }

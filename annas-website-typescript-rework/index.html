@@ -23,18 +23,18 @@
     <!-- Νέο Premium Button για Review -->
     <div class="navbar-items">
         <button class="navbar-review-btn" id="open-review-btn">
-            ★ Αξιολόγηση
+            Αξιολόγηση
         </button>
     </div>
 </nav>
 
 <!-- Review Modal (Εμφανίζεται όταν πατηθεί το κουμπί) -->
 <div aria-hidden="true" class="review-modal-overlay" id="review-modal">
-    <div class="review-modal-card">
+    <div aria-labelledby="review-title" aria-modal="true" class="review-modal-card" role="dialog">
         <button aria-label="Κλείσιμο" class="modal-close-btn" id="close-review-btn">&times;</button>
 
         <div class="review-header">
-            <h2>Η Γνώμη σας για τη «Γνώση»</h2>
+            <h2 id="review-title">Η Γνώμη σας για τη «Γνώση»</h2>
             <p>Βοηθήστε μας να γίνουμε ακόμα καλύτεροι ή μοιραστείτε την εμπειρία σας!</p>
         </div>
 

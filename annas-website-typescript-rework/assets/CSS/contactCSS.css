@@ -136,3 +136,9 @@
         padding: 1.25rem;
     }
 }
+
+@media (hover: none), (pointer: coarse) {
+    #cont-p2-contact:hover {
+        transform: none;
+    }
+}

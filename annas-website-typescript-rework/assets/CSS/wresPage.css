@@ -324,3 +324,10 @@
         box-sizing: border-box;
     }
 }
+
+@media (hover: none), (pointer: coarse) {
+    #small-text-wres-p:hover,
+    .wres-contact-link:hover {
+        transform: none;
+    }
+}

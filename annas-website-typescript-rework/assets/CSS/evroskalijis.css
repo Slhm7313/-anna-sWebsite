@@ -127,3 +127,9 @@
         padding: 1.25rem;
     }
 }
+
+@media (hover: none), (pointer: coarse) {
+    #evroskalijis-p2-div:hover {
+        transform: none;
+    }
+}
