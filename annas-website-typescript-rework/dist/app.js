@@ -1,24 +1,31 @@
 "use strict";
+// ==========================================
+// 1. Smooth Scroll Reveal Animation (IntersectionObserver)
+// ==========================================
 function setupScrollAnimations() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.15 // Ενεργοποιείται όταν το 15% του στοιχείου είναι ορατό
     };
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal-active');
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // Εκτελείται μία φορά
             }
         });
     }, observerOptions);
+    // Στοιχεία που θέλουμε να εμφανίζονται με animation
     const elementsToAnimate = document.querySelectorAll('#header_howWeWork-text, #header-img, #small_text, #footer-card, .methodology-list li');
     elementsToAnimate.forEach(el => {
         el.classList.add('reveal-on-scroll');
         scrollObserver.observe(el);
     });
 }
+// ==========================================
+// 2. Review Modal & Form Management
+// ==========================================
 function setupReviewModal() {
     const openBtn = document.getElementById('open-review-btn');
     const closeBtn = document.getElementById('close-review-btn');
@@ -30,10 +37,11 @@ function setupReviewModal() {
     const openModal = () => {
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; // Lock background scroll
         closeBtn.focus();
     };
     openBtn.addEventListener('click', openModal);
+    // Κλείσιμο Modal
     const closeModal = () => {
         modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
@@ -43,6 +51,7 @@ function setupReviewModal() {
     closeBtn.addEventListener('click', closeModal);
     if (window.location.hash === '#review-modal')
         openModal();
+    // Κλείσιμο με κλικ έξω από το card
     modal.addEventListener('click', (e) => {
         if (e.target === modal)
             closeModal();
@@ -51,8 +60,10 @@ function setupReviewModal() {
         if (e.key === 'Escape' && modal.classList.contains('active'))
             closeModal();
     });
+    // Διαχείριση Υποβολής Form
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        // Συλλογή Δεδομένων
         const formData = new FormData(form);
         const rating = formData.get('rating');
         const role = document.getElementById('review-role').value;
@@ -70,11 +81,13 @@ function setupReviewModal() {
             timestamp: new Date().toISOString()
         };
         console.log("Review Submitted Successfully:", reviewPayload);
+        // Εμφάνιση Success Message & Επαναφορά
         form.style.display = 'none';
         if (successMsg)
             successMsg.classList.remove('review-success-hidden');
         setTimeout(() => {
             closeModal();
+            // Reset Form μετά το κλείσιμο
             setTimeout(() => {
                 form.reset();
                 form.style.display = 'block';
@@ -84,8 +97,8 @@ function setupReviewModal() {
         }, 2000);
     });
 }
+// Εκτέλεση κατά τη φόρτωση
 window.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
     setupReviewModal();
 });
-//# sourceMappingURL=app.js.map
