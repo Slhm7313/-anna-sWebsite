@@ -1,20 +1,5 @@
-// Prepares a user-approved problem report email addressed to both site contacts.
-const reportRecipients = ['g.slimistinos.dev@gmail.com', 'gnwsi.2023@gmail.com'];
-export function createProblemReportMailto(impact, description, pageTitle, pageUrl, timestamp = new Date()) {
-    const subject = `[Αναφορά προβλήματος] ${impact}`;
-    const body = [
-        'Περιγραφή προβλήματος:',
-        description.trim(),
-        '',
-        `Επίδραση: ${impact}`,
-        `Σελίδα: ${pageTitle}`,
-        `Διεύθυνση σελίδας: ${pageUrl}`,
-        `Ημερομηνία: ${timestamp.toLocaleString('el-GR')}`,
-        '',
-        'Και οι δύο παραλήπτες βρίσκονται στο πεδίο «Προς» και μπορούν να απαντήσουν στην αναφορά.'
-    ].join('\n');
-    return `mailto:${reportRecipients.join(',')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
+// Prepares and sends the problem report automatically via Formspree.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myeezryr';
 export function setupProblemReportForm() {
     const form = document.getElementById('problem-report-form');
     const status = document.getElementById('problem-report-status');
@@ -26,20 +11,46 @@ export function setupProblemReportForm() {
         || !(impactField instanceof HTMLSelectElement)) {
         return;
     }
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
         if (!form.reportValidity())
             return;
+        // Visual feedback during submission
+        status.textContent = 'Αποστολή αναφοράς...';
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton)
+            submitButton.disabled = true;
         const formData = new FormData(form);
-        const impact = String(formData.get('impact') ?? '');
-        const description = String(formData.get('description') ?? '');
-        const pageUrl = String(formData.get('page-url') ?? window.location.href);
-        const pageTitle = String(formData.get('page-title') ?? document.title);
-        const mailtoUrl = createProblemReportMailto(impact, description, pageTitle, pageUrl);
-        status.textContent = 'Ανοίγουμε την εφαρμογή email σας. Ελέγξτε το μήνυμα και πατήστε «Αποστολή» για να το λάβουν και οι δύο παραλήπτες.';
-        const emailLink = document.createElement('a');
-        emailLink.href = mailtoUrl;
-        emailLink.click();
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                status.textContent = 'Η αναφορά σας στάλθηκε επιτυχώς! Ευχαριστούμε.';
+                form.reset();
+                // Re-populate page URL and title hidden inputs after reset if needed
+                const pageUrlInput = document.getElementById('report-page-url');
+                const pageTitleInput = document.getElementById('report-page-title');
+                if (pageUrlInput)
+                    pageUrlInput.value = window.location.href;
+                if (pageTitleInput)
+                    pageTitleInput.value = document.title;
+            }
+            else {
+                status.textContent = 'Προέκυψε σφάλμα κατά την αποστολή. Παρακαλούμε δοκιμάστε ξανά.';
+            }
+        }
+        catch (error) {
+            status.textContent = 'Σφάλμα σύνδεσης. Παρακαλούμε ελέγξτε τη σύνδεσή σας στο διαδίκτυο.';
+        }
+        finally {
+            if (submitButton)
+                submitButton.disabled = false;
+        }
     });
 }
 //# sourceMappingURL=problem-report.js.map
