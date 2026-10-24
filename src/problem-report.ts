@@ -38,13 +38,20 @@ export function setupProblemReportForm(): void {
             if (response.ok) {
                 status.textContent = 'Η αναφορά σας στάλθηκε επιτυχώς! Ευχαριστούμε.';
                 form.reset();
-                // Re-populate page URL and title hidden inputs after reset if needed
+
+                // Επαναφορά κρυφών πεδίων URL και τίτλου (αν υπάρχουν)
                 const pageUrlInput = document.getElementById('report-page-url') as HTMLInputElement | null;
                 const pageTitleInput = document.getElementById('report-page-title') as HTMLInputElement | null;
                 if (pageUrlInput) pageUrlInput.value = window.location.href;
                 if (pageTitleInput) pageTitleInput.value = document.title;
             } else {
-                status.textContent = 'Προέκυψε σφάλμα κατά την αποστολή. Παρακαλούμε δοκιμάστε ξανά.';
+                // Προσπάθεια ανάγνωσης συγκεκριμένου σφάλματος από το Formspree
+                const data = await response.json().catch(() => null);
+                if (data && data.errors && Array.isArray(data.errors)) {
+                    status.textContent = data.errors.map((err: { message: string }) => err.message).join(', ');
+                } else {
+                    status.textContent = 'Προέκυψε σφάλμα κατά την αποστολή. Παρακαλούμε δοκιμάστε ξανά.';
+                }
             }
         } catch (error) {
             status.textContent = 'Σφάλμα σύνδεσης. Παρακαλούμε ελέγξτε τη σύνδεσή σας στο διαδίκτυο.';

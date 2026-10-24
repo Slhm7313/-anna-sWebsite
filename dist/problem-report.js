@@ -32,7 +32,7 @@ export function setupProblemReportForm() {
             if (response.ok) {
                 status.textContent = 'Η αναφορά σας στάλθηκε επιτυχώς! Ευχαριστούμε.';
                 form.reset();
-                // Re-populate page URL and title hidden inputs after reset if needed
+                // Επαναφορά κρυφών πεδίων URL και τίτλου (αν υπάρχουν)
                 const pageUrlInput = document.getElementById('report-page-url');
                 const pageTitleInput = document.getElementById('report-page-title');
                 if (pageUrlInput)
@@ -41,7 +41,14 @@ export function setupProblemReportForm() {
                     pageTitleInput.value = document.title;
             }
             else {
-                status.textContent = 'Προέκυψε σφάλμα κατά την αποστολή. Παρακαλούμε δοκιμάστε ξανά.';
+                // Προσπάθεια ανάγνωσης συγκεκριμένου σφάλματος από το Formspree
+                const data = await response.json().catch(() => null);
+                if (data && data.errors && Array.isArray(data.errors)) {
+                    status.textContent = data.errors.map((err) => err.message).join(', ');
+                }
+                else {
+                    status.textContent = 'Προέκυψε σφάλμα κατά την αποστολή. Παρακαλούμε δοκιμάστε ξανά.';
+                }
             }
         }
         catch (error) {
