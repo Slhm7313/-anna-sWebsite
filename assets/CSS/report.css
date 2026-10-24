@@ -1,0 +1,138 @@
+/* Responsive issue-report form in the site's dark-green glassmorphism style. */
+.problem-report-page {
+    width: min(100% - 2rem, 48rem);
+    margin: clamp(1.5rem, 7vh, 5rem) auto;
+    padding: clamp(1.25rem, 5vw, 3rem);
+    border: 1px solid rgb(230 242 221 / 16%);
+    border-radius: 1.5rem;
+    background: rgb(255 244 225 / 5%);
+    color: var(--White);
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 25%);
+}
+
+.report-back-link {
+    color: var(--Blue-Grren);
+    text-decoration: none;
+}
+
+.report-back-link:hover {
+    text-decoration: underline;
+}
+
+.report-header {
+    margin: 2rem 0 1.5rem;
+}
+
+.report-eyebrow {
+    color: var(--Blue-Grren);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.report-header h1 {
+    margin: 0.5rem 0;
+    color: var(--LightGreen);
+    font-size: clamp(1.7rem, 6vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.report-header p,
+.report-email-note p {
+    line-height: 1.7;
+}
+
+.problem-report-form {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.report-field {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.report-field label {
+    color: var(--LightGreen);
+    font-weight: 650;
+}
+
+.report-field select,
+.report-field textarea {
+    width: 100%;
+    border: 1px solid rgb(230 242 221 / 24%);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: rgb(255 244 225 / 6%);
+    color: var(--White);
+    font: inherit;
+}
+
+.report-field select option {
+    background: var(--Black);
+    color: var(--White);
+}
+
+.report-field textarea {
+    min-height: 10rem;
+    resize: vertical;
+}
+
+.report-field select:focus,
+.report-field textarea:focus {
+    border-color: var(--Blue-Grren);
+    outline: 3px solid rgb(137 215 183 / 25%);
+}
+
+.report-help {
+    color: var(--LightGreen);
+    font-size: 0.9rem;
+}
+
+.report-submit {
+    min-height: 3rem;
+    border: 0;
+    border-radius: 0.75rem;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(135deg, var(--Blue-Grren), var(--DarkBlue-Green));
+    color: var(--White);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.report-submit:hover {
+    filter: brightness(1.08);
+}
+
+.report-status {
+    color: var(--LightGreen);
+    line-height: 1.6;
+}
+
+.report-email-note {
+    margin-top: 1.5rem;
+    border-top: 1px solid rgb(230 242 221 / 18%);
+    padding-top: 1rem;
+}
+
+.report-email-note h2 {
+    color: var(--LightGreen);
+    font-size: 1.1rem;
+}
+
+.report-email-note a,
+.not-found-direct-email a {
+    color: var(--Blue-Grren);
+    overflow-wrap: anywhere;
+}
+
+.not-found-direct-email {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    .problem-report-page {
+        margin-block: 1rem;
+    }
+}

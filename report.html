@@ -1,0 +1,78 @@
+<!-- Problem report page that prepares an email to both site and tutoring-center contacts. -->
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="noindex, follow" name="robots">
+    <meta content="Αναφέρετε πρόβλημα στη σελίδα του Φροντιστηρίου Γνώση." name="description">
+    <meta content="#1A312C" name="theme-color">
+    <title>Αναφορά προβλήματος | Φροντιστήριο Γνώση</title>
+    <link href="assets/CSS/mainCSS.css" rel="stylesheet">
+    <link href="assets/CSS/error.css" rel="stylesheet">
+    <link href="assets/CSS/report.css" rel="stylesheet">
+</head>
+<body>
+<main class="problem-report-page">
+    <a class="report-back-link" href="https://slhm7313.github.io/-anna-sWebsite/">← Επιστροφή στην αρχική</a>
+    <header class="report-header">
+        <span class="report-eyebrow">Υποστήριξη ιστοσελίδας</span>
+        <h1>Πείτε μας τι δεν λειτούργησε</h1>
+        <p>
+            Περιγράψτε το πρόβλημα και θα ετοιμάσουμε email με τη διεύθυνση της σελίδας.
+            Η αναφορά θα απευθύνεται και στον υπεύθυνο της ιστοσελίδας και στο Φροντιστήριο Γνώση.
+        </p>
+    </header>
+
+    <form class="problem-report-form" id="problem-report-form">
+        <div class="report-field">
+            <label for="problem-impact">Πόσο επηρεάζει τη χρήση της ιστοσελίδας;</label>
+            <select id="problem-impact" name="impact" required>
+                <option disabled selected value="">Επιλέξτε την επίδραση</option>
+                <option value="Μικρό πρόβλημα">Μικρό πρόβλημα — μία λειτουργία δεν δουλεύει</option>
+                <option value="Σημαντικό πρόβλημα">Σημαντικό πρόβλημα — δυσκολεύει τη χρήση της σελίδας</option>
+                <option value="Η σελίδα δεν λειτουργεί">Η σελίδα δεν λειτουργεί ή δεν μπορώ να συνεχίσω</option>
+            </select>
+        </div>
+
+        <div class="report-field">
+            <label for="problem-description">Τι συνέβη;</label>
+            <textarea
+                    autocomplete="on"
+                    id="problem-description"
+                    name="description"
+                    placeholder="Περιγράψτε τι προσπαθήσατε να κάνετε και τι εμφανίστηκε."
+                    required
+                    rows="7"></textarea>
+            <span class="report-help">Μην συμπεριλάβετε κωδικούς πρόσβασης ή άλλα ευαίσθητα προσωπικά στοιχεία.</span>
+        </div>
+
+        <input id="report-page-url" name="page-url" type="hidden">
+        <input id="report-page-title" name="page-title" type="hidden">
+        <button class="report-submit" type="submit">Άνοιγμα email αναφοράς</button>
+    </form>
+
+    <p aria-live="polite" class="report-status" id="problem-report-status"></p>
+    <aside class="report-email-note">
+        <h2>Πώς αποστέλλεται η αναφορά;</h2>
+        <p>
+            Αυτή η ιστοσελίδα δεν στέλνει email αυτόματα. Το κουμπί ανοίγει την εφαρμογή email
+            σας με την περιγραφή του προβλήματος, τη διεύθυνση της σελίδας και τις δύο διευθύνσεις
+            στο πεδίο «Προς». Ελέγξτε τα στοιχεία και πατήστε «Αποστολή»· έτσι και οι δύο
+            παραλήπτες θα μπορούν να δουν και να απαντήσουν στην ίδια αναφορά.
+        </p>
+        <p>
+            Αν δεν ανοίξει η εφαρμογή email, γράψτε και στους δύο:
+            <a href="mailto:g.slimistinos.dev@gmail.com,gnwsi.2023@gmail.com?subject=%CE%91%CE%BD%CE%B1%CF%86%CE%BF%CF%81%CE%AC%20%CF%80%CF%81%CE%BF%CE%B2%CE%BB%CE%AE%CE%BC%CE%B1%CF%84%CE%BF%CF%82">g.slimistinos.dev@gmail.com
+                και gnwsi.2023@gmail.com</a>.
+        </p>
+    </aside>
+</main>
+<script src="dist/app.js" type="module"></script>
+<script>
+    // Add the current page address to the email report without exposing data to a server.
+    document.getElementById('report-page-url').value = window.location.href;
+    document.getElementById('report-page-title').value = document.title;
+</script>
+</body>
+</html>
