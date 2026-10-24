@@ -22,6 +22,7 @@ function getHtmlAttributes(tag) {
 test('all public pages have valid local resources and local navigation links', async () => {
     const pages = [
         'index.html',
+        'report.html',
         'assets/pages/contact.html',
         'assets/pages/evroskalijis.html',
         'assets/pages/mathimata.html',
@@ -58,9 +59,37 @@ test('the branded 404 page includes valid recovery destinations and needs no nes
 
     assert.match(html, /name="robots" content="noindex, follow"|content="noindex, follow" name="robots"/);
     assert.ok(html.includes(`href="${siteBaseUrl}"`), '404 page should link back to the site home');
-    assert.ok(html.includes(`href="${siteBaseUrl}assets/pages/contact.html"`), '404 page should link to contact');
+    assert.ok(html.includes(`href="${siteBaseUrl}report.html"`), '404 page should link to issue reporting at the site root');
+    assert.ok(html.includes('mailto:g.slimistinos.dev@gmail.com,gnwsi.2023@gmail.com'), '404 fallback should address both contacts');
     assert.match(html, /Δεν βρήκαμε αυτή τη σελίδα/);
     assert.match(html, /<style>/, '404 page should remain styled even when external resources fail');
+});
+
+test('the issue report form addresses both contacts and includes the problem context', async () => {
+    const html = await readProjectFile('report.html');
+    const { createProblemReportMailto } = await import('../dist/problem-report.js');
+    const timestamp = new Date('2026-10-24T12:00:00.000Z');
+    const mailto = createProblemReportMailto(
+        'Η σελίδα δεν λειτουργεί',
+        '  Η φόρμα δεν ανοίγει.  ',
+        'Αναφορά προβλήματος',
+        `${siteBaseUrl}report.html`,
+        timestamp
+    );
+    const [recipients, query] = mailto.slice('mailto:'.length).split('?');
+    const parameters = new URLSearchParams(query);
+    const body = parameters.get('body');
+
+    assert.match(html, /id="problem-report-form"/);
+    assert.match(html, /assets\/CSS\/report\.css/);
+    assert.deepEqual(recipients.split(','), ['g.slimistinos.dev@gmail.com', 'gnwsi.2023@gmail.com']);
+    assert.equal(parameters.get('subject'), '[Αναφορά προβλήματος] Η σελίδα δεν λειτουργεί');
+    assert.ok(body.includes('Η φόρμα δεν ανοίγει.'));
+    assert.ok(body.includes(`${siteBaseUrl}report.html`));
+    assert.ok(body.includes('Η σελίδα δεν λειτουργεί'));
+    assert.ok(body.includes(timestamp.toLocaleString('el-GR')));
+    assert.doesNotMatch(html, /maxlength|minlength/, 'the issue description should not have a length limit');
+    assert.match(html, /άνοιγμα email αναφοράς/i);
 });
 
 test('the compiled application and structured-data modules are available', async () => {

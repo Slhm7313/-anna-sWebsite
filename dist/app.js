@@ -1,6 +1,7 @@
 // Browser entry point: initializes page animations, review UI, structured data, and error reporting.
 import { addOrganizationStructuredData } from './structured-data.js';
 import { installGlobalErrorHandler } from './error-handler.js';
+import { setupProblemReportForm } from './problem-report.js';
 function setupScrollAnimations() {
     const observerOptions = {
         root: null,
@@ -99,6 +100,7 @@ function setupReviewModal() {
 // Initialize page features after the document has loaded
 window.addEventListener('DOMContentLoaded', () => {
     installGlobalErrorHandler();
+    setupProblemReportForm();
     if (!document.body.classList.contains('error-page')) {
         addOrganizationStructuredData();
         setupScrollAnimations();
