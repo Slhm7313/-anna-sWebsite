@@ -1,23 +1,24 @@
-// ==========================================
-// 1. Smooth Scroll Reveal Animation (IntersectionObserver)
-// ==========================================
+// Browser entry point: initializes page animations, review UI, structured data, and error reporting.
+import { addOrganizationStructuredData } from './structured-data.js';
+import { installGlobalErrorHandler } from './error-handler.js';
+
 function setupScrollAnimations(): void {
     const observerOptions: IntersectionObserverInit = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15 // Ενεργοποιείται όταν το 15% του στοιχείου είναι ορατό
+        threshold: 0.15 // Activate when 15% of the element is visible
     };
 
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal-active');
-                observer.unobserve(entry.target); // Εκτελείται μία φορά
+                observer.unobserve(entry.target); // Reveal each element only once
             }
         });
     }, observerOptions);
 
-    // Στοιχεία που θέλουμε να εμφανίζονται με animation
+    // Elements that should appear with a reveal animation
     const elementsToAnimate = document.querySelectorAll(
         '#header_howWeWork-text, #header-img, #small_text, #footer-card, .methodology-list li'
     );
@@ -49,7 +50,7 @@ function setupReviewModal(): void {
 
     openBtn.addEventListener('click', openModal);
 
-    // Κλείσιμο Modal
+    // Close the review modal
     const closeModal = () => {
         modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
@@ -61,7 +62,7 @@ function setupReviewModal(): void {
 
     if (window.location.hash === '#review-modal') openModal();
 
-    // Κλείσιμο με κλικ έξω από το card
+    // Close the modal when the user clicks outside the card
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
@@ -70,11 +71,11 @@ function setupReviewModal(): void {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
 
-    // Διαχείριση Υποβολής Form
+    // Handle review form submission
     form.addEventListener('submit', (e: Event) => {
         e.preventDefault();
 
-        // Συλλογή Δεδομένων
+        // Collect the submitted review fields
         const formData = new FormData(form);
         const rating = formData.get('rating');
         const role = (document.getElementById('review-role') as HTMLSelectElement).value;
@@ -95,13 +96,13 @@ function setupReviewModal(): void {
 
         console.log("Review Submitted Successfully:", reviewPayload);
 
-        // Εμφάνιση Success Message & Επαναφορά
+        // Show the success message, then reset the form
         form.style.display = 'none';
         if (successMsg) successMsg.classList.remove('review-success-hidden');
 
         setTimeout(() => {
             closeModal();
-            // Reset Form μετά το κλείσιμο
+            // Reset the form after closing the modal
             setTimeout(() => {
                 form.reset();
                 form.style.display = 'block';
@@ -111,8 +112,13 @@ function setupReviewModal(): void {
     });
 }
 
-// Εκτέλεση κατά τη φόρτωση
+// Initialize page features after the document has loaded
 window.addEventListener('DOMContentLoaded', () => {
-    setupScrollAnimations();
-    setupReviewModal();
+    installGlobalErrorHandler();
+
+    if (!document.body.classList.contains('error-page')) {
+        addOrganizationStructuredData();
+        setupScrollAnimations();
+        setupReviewModal();
+    }
 });

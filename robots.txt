@@ -1,0 +1,5 @@
+# Allow search crawlers to index the public website and find its sitemap.
+User-agent: *
+Allow: /
+
+Sitemap: https://slhm7313.github.io/-anna-sWebsite/sitemap.xml

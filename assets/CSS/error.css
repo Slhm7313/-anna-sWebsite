@@ -1,0 +1,59 @@
+/* Accessible, dismissible error notifications styled to match the site's dark-green theme. */
+.site-error-notifications {
+    position: fixed;
+    z-index: 10000;
+    top: max(1rem, env(safe-area-inset-top));
+    right: max(1rem, env(safe-area-inset-right));
+    display: grid;
+    gap: 0.75rem;
+    width: min(26rem, calc(100vw - 2rem));
+}
+
+.site-error-message {
+    position: relative;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--Blue-Grren, #89D7B7);
+    border-left: 0.3rem solid #e8b768;
+    border-radius: 0.9rem;
+    background: #1a312c;
+    color: var(--White, #fff4e1);
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+}
+
+.site-error-message h2 {
+    margin: 0 0 0.4rem;
+    padding-right: 4.8rem;
+    color: var(--LightGreen, #e6f2dd);
+    font-size: 1.05rem;
+}
+
+.site-error-message p {
+    margin: 0.4rem 0;
+    line-height: 1.5;
+}
+
+.site-error-message .site-error-suggestion {
+    color: var(--LightGreen, #e6f2dd);
+}
+
+.site-error-dismiss {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    margin: 0;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid rgb(230 242 221 / 45%);
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--White, #fff4e1);
+    cursor: pointer;
+}
+
+.site-error-dismiss:hover,
+.site-error-dismiss:focus-visible {
+    background: rgb(230 242 221 / 12%);
+}
+
+.site-image-load-failed {
+    visibility: hidden;
+}

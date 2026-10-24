@@ -1,0 +1,112 @@
+<!-- Branded recovery page shown by GitHub Pages when a requested URL does not exist. -->
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="noindex, follow" name="robots">
+    <meta content="Η σελίδα δεν βρέθηκε | Φροντιστήριο Γνώση" name="description">
+    <meta content="#1A312C" name="theme-color">
+    <title>Η σελίδα δεν βρέθηκε | Φροντιστήριο Γνώση</title>
+    <style>
+        /* Keep the recovery page usable even when shared stylesheets fail to load. */
+        :root {
+            color-scheme: dark;
+            --page-ink: #1a312c;
+            --page-green: #89d7b7;
+            --page-light: #e6f2dd;
+            --page-cream: #fff4e1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            place-items: center;
+            background:
+                radial-gradient(circle at 15% 15%, #428475 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, #264843 0%, transparent 60%),
+                var(--page-ink);
+            color: var(--page-cream);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .not-found-page {
+            width: min(100%, 46rem);
+            padding: clamp(1.5rem, 6vw, 3.5rem);
+            border: 1px solid rgb(230 242 221 / 18%);
+            border-radius: 1.5rem;
+            background: rgb(255 244 225 / 5%);
+            box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 28%);
+        }
+
+        .not-found-code {
+            margin: 0 0 0.5rem;
+            color: var(--page-green);
+            font-size: clamp(3rem, 12vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        h1 {
+            margin: 0 0 0.75rem;
+            color: var(--page-light);
+            font-size: clamp(1.7rem, 6vw, 2.5rem);
+        }
+
+        .not-found-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .not-found-actions a {
+            display: inline-flex;
+            min-height: 2.8rem;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--page-green);
+            border-radius: 0.75rem;
+            color: var(--page-cream);
+            text-decoration: none;
+        }
+
+        .not-found-actions .not-found-home {
+            background: linear-gradient(135deg, var(--page-green), #428475);
+        }
+
+        .not-found-actions a:focus-visible {
+            outline: 3px solid var(--page-light);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 480px) {
+            .not-found-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="error-page">
+<main class="not-found-page">
+    <p class="not-found-code">404</p>
+    <h1>Δεν βρήκαμε αυτή τη σελίδα</h1>
+    <p>
+        Ο σύνδεσμος μπορεί να είναι λανθασμένος ή η σελίδα να έχει μετακινηθεί.
+        Ελέγξτε τη διεύθυνση ή συνεχίστε από έναν από τους παρακάτω συνδέσμους.
+    </p>
+    <nav aria-label="Επιλογές πλοήγησης" class="not-found-actions">
+        <a class="not-found-home" href="https://slhm7313.github.io/-anna-sWebsite/">Επιστροφή στην αρχική</a>
+        <a class="not-found-contact" href="https://slhm7313.github.io/-anna-sWebsite/assets/pages/contact.html">Επικοινωνία</a>
+    </nav>
+</main>
+</body>
+</html>

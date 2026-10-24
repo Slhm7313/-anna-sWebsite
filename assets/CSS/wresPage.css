@@ -1,3 +1,4 @@
+/* Layout and styling for the opening-hours page. */
 .main_cont-wres {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);

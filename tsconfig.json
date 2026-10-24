@@ -1,41 +1,33 @@
+// TypeScript build settings for compiling browser code from src/ to dist/.
 {
   "compilerOptions": {
-    /* --- Environment & Target --- */
+    /* Compile browser TypeScript as modern native JavaScript modules. */
     "target": "ES2022",
-    /* Target standard JavaScript version */
     "module": "ESNext",
-    /* Module code generation format */
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
     "lib": [
       "ES2022",
       "DOM"
     ],
-    /* Included environment type definitions (Node/Browser) */
-
-    /* --- Directories --- */
     "rootDir": "./src",
-    /* Where your source TypeScript files live */
     "outDir": "./dist",
-    /* Where compiled JavaScript files will go */
-
-    /* --- Strictness & Safety (Crucial) --- */
+    "sourceMap": true,
+    "noEmitOnError": true,
     "strict": true,
-    /* Turns on all strict type-checking options */
-    "skipLibCheck": true,
-    /* Skips type checking of declaration files (.d.ts) for faster builds */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-    /* Prevents casing-mismatch bugs across different OSs */
-
-    /* --- Interoperability --- */
-    "esModuleInterop": true
-    /* Allows default imports from modules that don't export default */
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*"
   ],
-  /* Tells TypeScript which files to compile */
   "exclude": [
     "node_modules",
     "dist"
   ]
-  /* Tells TypeScript which folders to ignore */
 }

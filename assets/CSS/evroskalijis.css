@@ -1,3 +1,4 @@
+/* Layout and styling for the service-area page. */
 #evrosklaijis_main-cont {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);

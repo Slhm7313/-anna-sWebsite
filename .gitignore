@@ -1,0 +1,5 @@
+# Keep local IDE settings out of future commits.
+.idea/
+
+# Exclude npm-installed dependencies.
+node_modules/

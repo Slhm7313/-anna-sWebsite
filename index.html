@@ -1,18 +1,36 @@
+<!-- Home page for the Gnosi tutoring center, including search and social-sharing metadata. -->
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta content="9KXBZXMiUx8SucWo5tN0Um8VJtvslYyyNG4vVFyhqbE" name="google-site-verification"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta charset="UTF-8">
-    <meta content="Φροντιστήριο «Γνώση» | Μαθαίνουμε αλλιώς, χωρίς άγχος! Δείτε το ωράριο, τα μαθήματα και επικοινωνήστε μαζί μας στο 698360730."
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="9KXBZXMiUx8SucWo5tN0Um8VJtvslYyyNG4vVFyhqbE" name="google-site-verification">
+    <meta content="Το Φροντιστήριο Γνώση στην Κορησό προσφέρει μαθήματα Γυμνασίου, Λυκείου και ΕΠΑΛ, με μικρά τμήματα και υποστήριξη χωρίς άγχος. Δείτε μαθήματα, ωράριο και στοιχεία επικοινωνίας."
           name="description">
-    <link href="assets/images/wres_img.jpeg" rel="icon" type="image">
-    <link href="assets/images/wres_img.jpeg" rel="apple-touch-icon" type="image"/>
-    <title>Γνώση</title>
+    <meta content="index, follow" name="robots">
+    <meta content="#1A312C" name="theme-color">
+    <link href="https://slhm7313.github.io/-anna-sWebsite/" rel="canonical">
+    <link href="assets/images/wres_img.jpeg" rel="icon" type="image/jpeg">
+    <link href="assets/images/wres_img.jpeg" rel="apple-touch-icon" type="image/jpeg">
+    <meta content="Φροντιστήριο Γνώση | Μαθήματα Γυμνασίου, Λυκείου και ΕΠΑΛ" property="og:title">
+    <meta content="Μαθήματα στην Κορησό και την Καστοριά, σε μικρά τμήματα και με υποστήριξη χωρίς άγχος."
+          property="og:description">
+    <meta content="website" property="og:type">
+    <meta content="https://slhm7313.github.io/-anna-sWebsite/" property="og:url">
+    <meta content="https://slhm7313.github.io/-anna-sWebsite/assets/images/school_img1.jpeg" property="og:image">
+    <meta content="el_GR" property="og:locale">
+    <meta content="Φροντιστήριο Γνώση στην Κορησό Καστοριάς" property="og:image:alt">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="Φροντιστήριο Γνώση | Μαθήματα Γυμνασίου, Λυκείου και ΕΠΑΛ" name="twitter:title">
+    <meta content="Μαθήματα στην Κορησό και την Καστοριά, σε μικρά τμήματα και με υποστήριξη χωρίς άγχος."
+          name="twitter:description">
+    <meta content="https://slhm7313.github.io/-anna-sWebsite/assets/images/school_img1.jpeg" name="twitter:image">
+    <title>Φροντιστήριο Γνώση | Μαθήματα Γυμνασίου, Λυκείου και ΕΠΑΛ</title>
     <link href="assets/CSS/mainCSS.css" rel="stylesheet">
     <link href="assets/CSS/navbar.css" rel="stylesheet">
     <link href="assets/CSS/header.css" rel="stylesheet">
     <link href="assets/CSS/footer.css" rel="stylesheet">
+    <link href="assets/CSS/error.css" rel="stylesheet">
 </head>
 <body>
 <nav id="main_container-navbar">
@@ -21,13 +39,13 @@
     <div class="navbar-items"><a class="navbar-links" href="assets/pages/ores.html">Ωράριο</a></div>
     <div class="navbar-items"><a class="navbar-links" href="assets/pages/evroskalijis.html">Περιοχές</a></div>
     <div class="navbar-items"><a class="navbar-links" href="assets/pages/contact.html">Επικοινωνία</a></div>
-    <!-- Νέο Premium Button για Review -->
+    <!-- Review modal trigger -->
     <div class="navbar-items">
         <button class="navbar-review-btn" id="open-review-btn">Αξιολόγηση</button>
     </div>
 </nav>
 
-<!-- Review Modal (Εμφανίζεται όταν πατηθεί το κουμπί) -->
+<!-- Review modal shown when the user activates its trigger -->
 <div aria-hidden="true" class="review-modal-overlay" id="review-modal">
     <div aria-labelledby="review-title" aria-modal="true" class="review-modal-card" role="dialog">
         <button aria-label="Κλείσιμο" class="modal-close-btn" id="close-review-btn">&times;</button>
@@ -122,7 +140,7 @@
         </div>
     </div>
 </div>
-<!--TODO 2-->
+<!-- Homepage introduction and teaching approach -->
 <header id="main_container-Header">
     <div id="header-name-front">
         <h1 class="brand-title">Γνώση</h1>
@@ -168,7 +186,7 @@
         </p>
     </div>
 </header>
-<!--todo 9-->
+<!-- Shared contact and social links -->
 <footer id="footer-container">
     <div id="footer-card">
         <!-- Brand Title & Tagline -->
